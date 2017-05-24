@@ -50,18 +50,23 @@
         "ec2:CreateTags",
         "ec2:CreateVpc",
         "ec2:CreateVolume",
+        "ec2:DescribeAccountAttributes",
         "ec2:DescribeAddresses",
         "ec2:DescribeAvailabilityZones",
+        "ec2:DescribeVpcClassicLink",
         "ec2:DescribeInstances",
         "ec2:DescribeInternetGateways",
+        "ec2:DescribeImages",
         "ec2:DescribeKeyPairs",
         "ec2:DescribeNatGateways",
+        "ec2:DescribeNetworkAcls",
         "ec2:DescribeRegions",
         "ec2:DescribeRouteTables",
         "ec2:DescribeSecurityGroups",
         "ec2:DescribeSubnets",
         "ec2:DescribeTags",
         "ec2:DescribeVpcs",
+        "ec2:DescribeVpcAttribute",
         "ec2:ModifySubnetAttribute",
         "ec2:ModifyVpcAttribute",
         "ec2:RevokeSecurityGroupEgress",
@@ -88,6 +93,10 @@
         "iam:CreateInstanceProfile",
         "iam:CreateRole",
         "iam:GetUser",
+        "iam:GetInstancePolicy",
+        "iam:GetInstanceProfile",
+        "iam:GetRole",
+        "iam:GetRolePolicy",
         "iam:PassRole",
         "iam:PutRolePolicy"
       ],
@@ -126,10 +135,28 @@
       "Effect": "Allow",
       "Action": [
         "s3:PutObject",
-        "s3:GetObject",
+        "s3:GetBucketCors",
+        "s3:GetBucketWebsite",
+        "s3:GetBucketVersioning",
+        "s3:GetAccelerateConfiguration",
+        "s3:GetBucketRequestPayment",
+        "s3:GetBucketLogging",
+        "s3:GetLifecycleConfiguration",
+        "s3:GetReplicationConfiguration",
+        "s3:GetBucketLocation",
+        "s3:GetBucketTagging",
+        "s3:HeadBucket",
+        "s3:ListBucket",
         "s3:DeleteObject"
       ],
       "Resource": "arn:aws:s3:::*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sts:GetCallerIdentity"
+      ],
+      "Resource": "*"
     }
   ]
 }
