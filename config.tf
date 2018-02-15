@@ -361,6 +361,17 @@ This field is mandatory if `tectonic_ca_cert` is set.
 EOF
 }
 
+variable "tectonic_ingress_include_chain" {
+  type    = "string"
+  default = "false"
+
+  description = <<EOF
+(optional) Include the signing CA in the ingress certificate chain.
+This is only relevant when providing a `tectonic_ca_cert`.
+EOF
+}
+
+
 variable "tectonic_ca_key_alg" {
   type    = "string"
   default = "RSA"

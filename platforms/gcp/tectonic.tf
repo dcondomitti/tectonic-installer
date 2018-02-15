@@ -95,9 +95,10 @@ module "tectonic" {
   ca_generated = "${var.tectonic_ca_cert == "" ? false : true}"
   ca_cert      = "${module.kube_certs.ca_cert_pem}"
 
-  ingress_ca_cert_pem = "${module.ingress_certs.ca_cert_pem}"
-  ingress_cert_pem    = "${module.ingress_certs.cert_pem}"
-  ingress_key_pem     = "${module.ingress_certs.key_pem}"
+  ingress_ca_cert_pem       = "${module.ingress_certs.ca_cert_pem}"
+  ingress_cert_pem          = "${module.ingress_certs.cert_pem}"
+  ingress_key_pem           = "${module.ingress_certs.key_pem}"
+  ingress_include_chain     = "${var.tectonic_ingress_include_chain}"
 
   identity_client_cert_pem = "${module.identity_certs.client_cert_pem}"
   identity_client_key_pem  = "${module.identity_certs.client_key_pem}"

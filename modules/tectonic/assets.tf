@@ -63,7 +63,7 @@ resource "template_dir" "tectonic" {
 
     ingress_kind     = "${var.ingress_kind}"
     ingress_ca_cert  = "${base64encode(var.ingress_ca_cert_pem)}"
-    ingress_tls_cert = "${base64encode(var.ingress_cert_pem)}"
+    ingress_tls_cert = "${base64encode(var.ingress_include_chain ? format("%s\n%s", var.ingress_cert_pem, var.ingress_ca_cert_pem) : var.ingress_cert_pem)}"
     ingress_tls_key  = "${base64encode(var.ingress_key_pem)}"
 
     identity_server_tls_cert = "${base64encode(var.identity_server_cert_pem)}"

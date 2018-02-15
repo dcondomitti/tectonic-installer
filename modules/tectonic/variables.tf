@@ -49,6 +49,11 @@ variable "ca_cert" {
   type        = "string"
 }
 
+variable "ingress_include_chain" {
+  description = "Include the signing CA in the ingress certificate chain"
+  type        = "string"
+}
+
 variable "base_address" {
   description = "Base address used to access the Tectonic Console, without protocol nor trailing forward slash (may contain a port). Example: console.example.com:30000."
   type        = "string"
