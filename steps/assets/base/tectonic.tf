@@ -59,13 +59,9 @@ module "tectonic" {
   license_path     = "${pathexpand(var.tectonic_license_path)}"
   pull_secret_path = "${pathexpand(var.tectonic_pull_secret_path)}"
 
-  admin_email = "${var.tectonic_admin_email}"
-
   update_channel = "${var.tectonic_update_channel}"
   update_app_id  = "${var.tectonic_update_app_id}"
   update_server  = "${var.tectonic_update_server}"
-
-  ca_generated = "${var.tectonic_ca_cert == "" ? false : true}"
 
   ingress_ca_cert_pem = "${local.ingress_ca_cert_pem}"
   ingress_cert_pem    = "${local.ingress_cert_pem}"
