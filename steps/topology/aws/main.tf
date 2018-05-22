@@ -9,6 +9,12 @@ provider "aws" {
   }
 }
 
+locals {
+  private_zone_id = "${var.tectonic_aws_external_private_zone == "" ?
+                        join("", aws_route53_zone.tectonic_int.*.zone_id) :
+                        var.tectonic_aws_external_private_zone}"
+}
+
 data "aws_availability_zones" "azs" {}
 
 module "container_linux" {
@@ -23,6 +29,7 @@ resource "aws_route53_zone" "tectonic_int" {
   count         = "${var.tectonic_aws_private_endpoints ? "${var.tectonic_aws_external_private_zone == "" ? 1 : 0 }" : 0}"
   vpc_id        = "${module.vpc.vpc_id}"
   name          = "${var.tectonic_base_domain}"
+  count         = "${var.tectonic_aws_external_private_zone == "" ? 1 : 0}"
   force_destroy = true
 
   tags = "${merge(map(
@@ -69,7 +76,7 @@ module "dns" {
   console_elb_zone_id       = "${module.vpc.aws_elb_console_zone_id}"
   elb_alias_enabled         = true
   master_count              = "${var.tectonic_master_count}"
-  private_zone_id           = "${var.tectonic_aws_external_private_zone != "" ? var.tectonic_aws_external_private_zone : join("", aws_route53_zone.tectonic_int.*.zone_id)}"
+  private_zone_id           = "${local.private_zone_id}"
   external_vpc_id           = "${module.vpc.vpc_id}"
   extra_tags                = "${var.tectonic_aws_extra_tags}"
   private_endpoints         = "${var.tectonic_aws_private_endpoints}"

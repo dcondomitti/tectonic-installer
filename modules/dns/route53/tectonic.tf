@@ -46,7 +46,7 @@ resource "aws_route53_record" "tectonic_api_internal" {
 }
 
 resource "aws_route53_record" "tectonic-console" {
-  count   = "${var.elb_alias_enabled ? 0 : 1}"
+  count   = "${var.elb_alias_enabled ? var.tectonic_public_endpoints : 0}"
   zone_id = "${local.public_zone_id}"
   name    = "${var.cluster_name}"
   type    = "A"
