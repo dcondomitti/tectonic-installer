@@ -3,6 +3,11 @@
 # find modules/tectonic/resources/manifests -type f -printf '    "%P",\n' | sort
 variable "manifest_names" {
   default = [
+    "auth/openshift-auth-deploy.yaml",
+    "auth/openshift-auth-passwds.yaml",
+    "auth/openshift-auth-route.yaml",
+    "auth/openshift-auth-svc.yaml",
+    "auth/openshift-auth-tls.yaml",
     "ingress/cluster-config.yaml",
     "ingress/pull.json",
     "ingress/README.md",
@@ -74,6 +79,14 @@ data "template_file" "manifest_file_list" {
     ingress_tls_key         = "${base64encode(var.ingress_key_pem)}"
     ingress_tls_bundle      = "${base64encode(var.ingress_bundle_pem)}"
 
+    auth_ca_cert         = "${base64encode(var.auth_ca_cert_pem)}"
+    auth_ca_cert_raw     = "${indent(6, var.auth_ca_cert_pem)}"
+    auth_tls_cert        = "${base64encode(var.auth_cert_pem)}"
+    auth_tls_cert_raw    = "${indent(6, var.auth_cert_pem)}"
+    auth_tls_key         = "${base64encode(var.auth_key_pem)}"
+    auth_tls_key_raw     = "${indent(6, var.auth_key_pem)}"
+    auth_tls_bundle      = "${base64encode(var.auth_bundle_pem)}"
+    
     tnc_tls_cert = "${base64encode(var.tnc_cert_pem)}"
     tnc_tls_key  = "${base64encode(var.tnc_key_pem)}"
 

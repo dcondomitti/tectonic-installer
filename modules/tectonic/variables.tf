@@ -78,3 +78,18 @@ variable "tnc_cert_pem" {
 variable "tnc_key_pem" {
   type = "string"
 }
+
+variable "auth_ca_cert_pem" {
+  type = "string"
+}
+
+variable "auth_cert_pem" {
+  type = "string"
+}
+
+variable "auth_key_pem" {
+  type = "string"
+}
+
+variable "auth_bundle_pem" {
+  type = "string"

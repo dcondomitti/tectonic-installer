@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: openshift-auth
+  namespace: kube-system
+  labels:
+    k8s-app: openshift-auth
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      k8s-app: openshift-auth
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        k8s-app: openshift-auth
+    spec:
+      imagePullSecrets:
+      - name: dcondomitti-tm-pull-secret
+      containers:
+        - name: os-auth
+          image: quay.io/dcondomitti/os-auth:b1825a0d6fa4
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+          - name: passwds
+            readOnly: true
+            mountPath: /var/os-auth
+      volumes:
+        - name: passwds
+          configMap:
+            name: openshift-auth-passwds
+            items:
+            - key: passwds
+              path: passwds

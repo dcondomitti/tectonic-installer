@@ -148,6 +148,12 @@ kubectl create -f secrets/tnc-tls.yaml
 kubectl create -f secrets/ca-cert.yaml
 kubectl create -f ingress/pull.json
 
+echo "Creating openshift authentication service"
+kubectl create -f auth/openshift-auth-route.yaml
+kubectl create -f auth/openshift-auth-passwds.yaml
+kubectl create -f auth/openshift-auth-svc.yaml
+kubectl create -f auth/openshift-auth-deploy.yaml
+
 echo "Creating Operators"
 kubectl create -f security/priviledged-scc-tectonic.yaml
 kubectl create -f updater/tectonic-channel-operator-kind.yaml

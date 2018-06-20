@@ -1,0 +1,22 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: openshift-auth
+  namespace: kube-system
+spec:
+  host: openshift-auth.apps.${base_address}
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: openshift-auth
+    weight: 100
+  wildcardPolicy: None
+  tls:
+    termination: edge            
+    key: |
+      ${auth_tls_key_raw}
+    certificate: |
+      ${auth_tls_cert_raw}
+    caCertificate: |
+      ${auth_ca_cert_raw}

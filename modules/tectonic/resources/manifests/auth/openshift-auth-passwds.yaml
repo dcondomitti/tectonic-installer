@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  passwds: |
+    dcondomitti:$2y$05$uM39QJoBjjd.oklvFeHYZ.mTvtK5PI5J3sJFqx7B0iSboYZqEPTyi
+kind: ConfigMap
+metadata:
+  name: openshift-auth-passwds
+  namespace: kube-system

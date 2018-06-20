@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: openshift-auth
+  namespace: kube-system
+spec:
+  selector:
+    k8s-app: openshift-auth
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
