@@ -68,6 +68,11 @@ module "tectonic" {
   ingress_key_pem     = "${local.ingress_key_pem}"
   ingress_bundle_pem  = "${join("", list(local.ingress_cert_pem, local.ingress_key_pem, local.ingress_ca_cert_pem))}"
 
+  auth_ca_cert_pem = "${local.auth_ca_cert_pem}"
+  auth_cert_pem    = "${local.auth_cert_pem}"
+  auth_key_pem     = "${local.auth_key_pem}"
+  auth_bundle_pem  = "${join("", list(local.auth_cert_pem, local.auth_key_pem, local.auth_ca_cert_pem))}"
+
   tnc_cert_pem = "${local.tnc_cert_pem}"
   tnc_key_pem  = "${local.tnc_key_pem}"
 

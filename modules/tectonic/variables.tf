@@ -93,3 +93,4 @@ variable "auth_key_pem" {
 
 variable "auth_bundle_pem" {
   type = "string"
+}

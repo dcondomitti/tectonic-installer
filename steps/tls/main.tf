@@ -53,3 +53,12 @@ module "tnc_certs" {
   ca_key_alg  = "${module.ca_certs.root_ca_key_alg}"
   ca_key_pem  = "${module.ca_certs.root_ca_key_pem}"
 }
+
+module "auth_certs" {
+  source = "../../modules/tls/auth"
+
+  base_address = "${local.ingress_internal_fqdn}"
+  ca_cert_pem  = "${module.ca_certs.kube_ca_cert_pem}"
+  ca_key_alg   = "${module.ca_certs.kube_ca_key_alg}"
+  ca_key_pem   = "${module.ca_certs.kube_ca_key_pem}"
+}
